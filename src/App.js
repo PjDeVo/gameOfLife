@@ -1,25 +1,60 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import produce from "immer";
+import React, { useRef, useState, useCallback } from "react";
+import "./App.css";
+import Header from "./components/Header";
+import Rules from "./components/Rules";
+
+import Board from "./grid/board";
+
+// function toggleRunning() {
+
+// }
+
+const operations = [
+  [0, 1],
+  [0, -1],
+  [1, -1],
+  [-1, 1],
+  [1, 1],
+  [-1, -1],
+  [1, 0],
+  [-1, 0],
+];
 
 function App() {
+  const [numRows, setRows] = useState(30);
+  const [numCols, setCols] = useState(40);
+  const [running, setRunning] = useState(false);
+  const [timer, setTimer] = useState(50);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <body>
+      <div className="App">
+        <div className="wrapper">
+          <Header />
+        </div>
+
+        <div className="content-wrapper">
+          <div>
+          <Board
+            time={timer}
+            running={running}
+            operations={operations}
+            rows={numRows}
+            cols={numCols}
+            changeRows = {setRows}
+            changeCols = {setCols}
+            setTime = {setTimer}
+          />
+          </div>
+          
+          <div>
+            <Rules/>
+          </div>
+          
+        </div>
+      </div>
+    </body>
   );
 }
 

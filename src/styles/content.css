@@ -1,0 +1,10 @@
+.content-wrapper {
+    display: flex;
+    font-size: 15px;
+    justify-content: space-evenly;
+}
+
+li {
+    font-size: 20px;
+    font-weight: bold;
+}
